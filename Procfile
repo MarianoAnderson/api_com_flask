@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT "src.app:create_app()"
+web: python src/app.py

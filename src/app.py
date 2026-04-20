@@ -59,7 +59,7 @@ def create_app(test_config=None):
     # Configurações padrão (Chave de segurança e nome do banco de dados)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        SQLALCHEMY_DATABASE_URI=os.environ["DATABASE_URL"],
+        SQLALCHEMY_DATABASE_URI=os.environ.get("DATABASE_URL", "sqlite:///flaskbank.sqlite"),
         JWT_SECRET_KEY="super-secret",
     )
 
@@ -97,4 +97,8 @@ def create_app(test_config=None):
 
 # flask --app src.app run --debug
 # Caso O ambiente virtual não esteja ativado, ative-o com o comando: poetry run flask --app src.app run --debug
-# flask --app src.app init-db 
+# flask --app src.app init-db
+
+if __name__ == '__main__':
+    app = create_app()
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000))) 
