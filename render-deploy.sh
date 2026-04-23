@@ -1,3 +1,3 @@
 set -e
 
-poetry run python src/app.py
+python src/app.py
